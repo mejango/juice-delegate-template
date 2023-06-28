@@ -1,9 +1,11 @@
-# juice-contract-template
-Template used to code juicy solidity stuff - includes forge, libs, etc. 
+# juice-delegate-template
+Template used to code juicy solidity Delegate stuff - includes forge, libs, etc. 
 
-This template is a good starting point for building solidity extensions to the Juicebox Protocol. Forking this template may help you to avoid submodule related dependency issues down the road.
+This template is a good starting point for building solidity Delegate extensions to the Juicebox Protocol. Delegates define pockets of code that get called when a project receives payments and when token holders attempt to reclaim funds from a project. Forking this template may help you to avoid submodule related dependency issues down the road.
 
 Do not push straight on main, rather create a new branch and open a PR - your reviewer will love you for this.
+
+This repo includes an example delegate as well as utilites for deploying or reconfiguring a project that uses the delegate.
 
 # Getting started
 ## Prerequisites
