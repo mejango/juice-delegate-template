@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.20;
 
 // import {mulDiv} from '@prb/math/src/Common.sol';
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
@@ -16,17 +16,23 @@ import {JBRedeemParamsData} from "@jbx-protocol/juice-contracts-v3/contracts/str
 import {JBPayDelegateAllocation} from "@jbx-protocol/juice-contracts-v3/contracts/structs/JBPayDelegateAllocation.sol";
 import {JBRedemptionDelegateAllocation} from
     "@jbx-protocol/juice-contracts-v3/contracts/structs/JBRedemptionDelegateAllocation.sol";
+import {DeployMyDelegateData} from "./structs/DeployMyDelegateData.sol";
 
 /// @notice A contract that is a Data Source, a Pay Delegate, and a Redemption Delegate.
+/// @dev This example implementation confines payments to an allow list.
 contract MyDelegate is IJBFundingCycleDataSource, IJBPayDelegate, IJBRedemptionDelegate {
-    error INVALID_PAYMENT_EVENT();
-    error INVALID_REDEMPTION_EVENT();
+    error INVALID_PAYMENT_EVENT(address caller, uint256 projectId, uint256 value);
+    error INVALID_REDEMPTION_EVENT(address caller, uint256 projectId, uint256 value);
+    error PAYER_NOT_ON_ALLOWLIST(address payer);
 
     /// @notice The Juicebox project ID this contract's functionality applies to.
     uint256 public projectId;
 
     /// @notice The directory of terminals and controllers for projects.
     IJBDirectory public directory;
+
+    /// @notice Addresses allowed to make payments to the treasury.
+    mapping(address => bool) public paymentFromAddressIsAllowed;
 
     /// @notice This function gets called when the project receives a payment.
     /// @dev Part of IJBFundingCycleDataSource.
@@ -87,23 +93,40 @@ contract MyDelegate is IJBFundingCycleDataSource, IJBPayDelegate, IJBRedemptionD
     /// @notice Initializes the clone contract with project details and a directory from which ecosystem payment terminals and controller can be found.
     /// @param _projectId The ID of the project this contract's functionality applies to.
     /// @param _directory The directory of terminals and controllers for projects.
-    function initialize(uint256 _projectId, IJBDirectory _directory) external {
+    /// @param _deployMyDelegateData Data necessary to deploy the delegate.
+    function initialize(uint256 _projectId, IJBDirectory _directory, DeployMyDelegateData memory _deployMyDelegateData)
+        external
+    {
         // Stop re-initialization.
         if (projectId != 0) revert();
 
+        // Store the basics.
         projectId = _projectId;
         directory = _directory;
+
+        // Store the allow list.
+        uint256 _numberOfAllowedAddresses = _deployMyDelegateData.allowList.length;
+        for (uint256 _i; _i < _numberOfAllowedAddresses;) {
+            paymentFromAddressIsAllowed[_deployMyDelegateData.allowList[_i]] = true;
+            unchecked {
+                ++_i;
+            }
+        }
     }
 
     /// @notice Received hook from the payment terminal after a payment.
     /// @dev Reverts if the calling contract is not one of the project's terminals.
+    /// @dev This example implementation reverts if the payer isn't on the allow list.
     /// @param _data Standard Juicebox project payment data. See https://docs.juicebox.money/dev/api/data-structures/jbdidpaydata/.
     function didPay(JBDidPayData calldata _data) external payable virtual override {
         // Make sure the caller is a terminal of the project, and that the call is being made on behalf of an interaction with the correct project.
         if (
             msg.value != 0 || !directory.isTerminalOf(projectId, IJBPaymentTerminal(msg.sender))
                 || _data.projectId != projectId
-        ) revert INVALID_PAYMENT_EVENT();
+        ) revert INVALID_PAYMENT_EVENT(msg.sender, _data.projectId, msg.value);
+
+        // Make sure the address is on the allow list.
+        if (!paymentFromAddressIsAllowed[_data.payer]) revert PAYER_NOT_ON_ALLOWLIST(_data.payer);
     }
 
     /// @notice Received hook from the payment terminal after a redemption.
@@ -114,6 +137,6 @@ contract MyDelegate is IJBFundingCycleDataSource, IJBPayDelegate, IJBRedemptionD
         if (
             msg.value != 0 || !directory.isTerminalOf(projectId, IJBPaymentTerminal(msg.sender))
                 || _data.projectId != projectId
-        ) revert INVALID_REDEMPTION_EVENT();
+        ) revert INVALID_REDEMPTION_EVENT(msg.sender, _data.projectId, msg.value);
     }
 }

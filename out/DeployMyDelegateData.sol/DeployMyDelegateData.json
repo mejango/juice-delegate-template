@@ -1,0 +1,88 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "src/structs/DeployMyDelegateData.sol",
+    "id": 29784,
+    "exportedSymbols": {
+      "DeployMyDelegateData": [
+        29783
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:170:62",
+    "nodes": [
+      {
+        "id": 29779,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:62",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ]
+      },
+      {
+        "id": 29783,
+        "nodeType": "StructDefinition",
+        "src": "145:56:62",
+        "nodes": [],
+        "canonicalName": "DeployMyDelegateData",
+        "members": [
+          {
+            "constant": false,
+            "id": 29782,
+            "mutability": "mutable",
+            "name": "allowList",
+            "nameLocation": "189:9:62",
+            "nodeType": "VariableDeclaration",
+            "scope": 29783,
+            "src": "179:19:62",
+            "stateVariable": false,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 29780,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "179:7:62",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 29781,
+              "nodeType": "ArrayTypeName",
+              "src": "179:9:62",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "visibility": "internal"
+          }
+        ],
+        "name": "DeployMyDelegateData",
+        "nameLocation": "152:20:62",
+        "scope": 29784,
+        "visibility": "public"
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 62
+}
