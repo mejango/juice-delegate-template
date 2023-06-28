@@ -1,10 +1,10 @@
 {
-  "name": "",
+  "name": "juice-delegate-template",
   "version": "0.0.0",
   "dependencies": {
-    "@jbx-protocol/juice-contracts-v3": "^3.1.1",
-    "@openzeppelin/contracts": "^4.8.1",
-    "@prb/math": "^4.0.0"
+    "@jbx-protocol/juice-contracts-v3": "^3.1.2",
+    "@openzeppelin/contracts": "^4.9.2",
+    "@prb/math": "^4.0.1"
   },
   "scripts": {
     "preinstall": "forge install",
