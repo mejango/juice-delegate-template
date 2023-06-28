@@ -15,15 +15,15 @@ contract MyDelegateDeployer {
     uint256 internal _nonce;
 
     /// @notice An implementation of the Delegate being deployed.
-    MyDelegate public immutable implementation;
+    MyDelegate public immutable delegateImplementation;
 
     /// @notice A contract that stores references to deployer contracts of delegates.
     IJBDelegatesRegistry public immutable delegatesRegistry;
 
-    /// @param _implementation The delegate implementation that will be cloned.
+    /// @param _delegateImplementation The delegate implementation that will be cloned.
     /// @param _delegatesRegistry A contract that stores references to delegate deployer contracts.
-    constructor(MyDelegate _implementation, IJBDelegatesRegistry _delegatesRegistry) {
-        implementation = _implementation;
+    constructor(MyDelegate _delegateImplementation, IJBDelegatesRegistry _delegatesRegistry) {
+        delegateImplementation = _delegateImplementation;
         delegatesRegistry = _delegatesRegistry;
     }
 
@@ -38,7 +38,7 @@ contract MyDelegateDeployer {
         IJBDirectory _directory
     ) external returns (MyDelegate delegate) {
         // Deploy the delegate clone from the implementation.
-        delegate = MyDelegate(Clones.clone(address(implementation)));
+        delegate = MyDelegate(Clones.clone(address(delegateImplementation)));
 
         // Initialize it.
         delegate.initialize(_projectId, _directory, _deployMyDelegateData);
