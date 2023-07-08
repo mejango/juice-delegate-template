@@ -10,19 +10,19 @@
   },
   "ast": {
     "absolutePath": "node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBGlobalFundingCycleMetadata.sol",
-    "id": 28329,
+    "id": 28304,
     "exportedSymbols": {
       "JBGlobalFundingCycleMetadata": [
-        28328
+        28303
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "32:511:40",
+    "src": "32:530:44",
     "nodes": [
       {
-        "id": 28320,
+        "id": 28295,
         "nodeType": "PragmaDirective",
-        "src": "32:23:40",
+        "src": "32:23:44",
         "nodes": [],
         "literals": [
           "solidity",
@@ -32,27 +32,27 @@
         ]
       },
       {
-        "id": 28328,
+        "id": 28303,
         "nodeType": "StructDefinition",
-        "src": "427:115:40",
+        "src": "446:115:44",
         "nodes": [],
         "canonicalName": "JBGlobalFundingCycleMetadata",
         "documentation": {
-          "id": 28321,
+          "id": 28296,
           "nodeType": "StructuredDocumentation",
-          "src": "57:369:40",
-          "text": "@member allowSetTerminals A flag indicating if setting terminals should be allowed during this funding cycle.\n@member allowSetController A flag indicating if setting a new controller should be allowed during this funding cycle.\n@member pauseTransfers A flag indicating if the project token transfer functionality should be paused during the funding cycle."
+          "src": "57:389:44",
+          "text": "@custom:member allowSetTerminals A flag indicating if setting terminals should be allowed during this funding cycle.\n @custom:member allowSetController A flag indicating if setting a new controller should be allowed during this funding cycle.\n @custom:member pauseTransfers A flag indicating if the project token transfer functionality should be paused during the funding cycle."
         },
         "members": [
           {
             "constant": false,
-            "id": 28323,
+            "id": 28298,
             "mutability": "mutable",
             "name": "allowSetTerminals",
-            "nameLocation": "472:17:40",
+            "nameLocation": "491:17:44",
             "nodeType": "VariableDeclaration",
-            "scope": 28328,
-            "src": "467:22:40",
+            "scope": 28303,
+            "src": "486:22:44",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -60,10 +60,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 28322,
+              "id": 28297,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "467:4:40",
+              "src": "486:4:44",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -73,13 +73,13 @@
           },
           {
             "constant": false,
-            "id": 28325,
+            "id": 28300,
             "mutability": "mutable",
             "name": "allowSetController",
-            "nameLocation": "498:18:40",
+            "nameLocation": "517:18:44",
             "nodeType": "VariableDeclaration",
-            "scope": 28328,
-            "src": "493:23:40",
+            "scope": 28303,
+            "src": "512:23:44",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -87,10 +87,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 28324,
+              "id": 28299,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "493:4:40",
+              "src": "512:4:44",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -100,13 +100,13 @@
           },
           {
             "constant": false,
-            "id": 28327,
+            "id": 28302,
             "mutability": "mutable",
             "name": "pauseTransfers",
-            "nameLocation": "525:14:40",
+            "nameLocation": "544:14:44",
             "nodeType": "VariableDeclaration",
-            "scope": 28328,
-            "src": "520:19:40",
+            "scope": 28303,
+            "src": "539:19:44",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -114,10 +114,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 28326,
+              "id": 28301,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "520:4:40",
+              "src": "539:4:44",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -127,12 +127,12 @@
           }
         ],
         "name": "JBGlobalFundingCycleMetadata",
-        "nameLocation": "434:28:40",
-        "scope": 28329,
+        "nameLocation": "453:28:44",
+        "scope": 28304,
         "visibility": "public"
       }
     ],
     "license": "MIT"
   },
-  "id": 40
+  "id": 44
 }
