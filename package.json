@@ -14,8 +14,8 @@
     "size": "forge build --sizes",
     "coverage": "forge coverage --match-path ./src/*.sol --report lcov --report summary",
     "doc": "forge doc",
-    "deploy:mainnet": "source .env && forge script DeployMainnet --broadcast --network mainnet --rpc-url $RPC_MAINNET --verify --ledger --sender $SENDER_MAINNET",
-    "deploy:goerli": "source .env && forge script DeployGoerli --broadcast --network goerli --rpc-url $RPC_GOERLI --verify --ledger --sender $SENDER_GOERLI",
+    "deploy:mainnet": "source .env && forge script DeployMainnet --rpc-url $MAINNET_RPC_PROVIDER_URL --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --ledger --sender $SENDER_ADDRESS -vvv",
+    "deploy:goerli": "source .env && forge script DeployGoerli --rpc-url $GOERLI_RPC_PROVIDER_URL --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --ledger --sender $SENDER_ADDRESS -vvv",
     "tree": "forge tree",
     "lint": "forge fmt"
   }
